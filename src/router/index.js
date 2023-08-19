@@ -23,6 +23,7 @@ const routes = [
   {
     path: "/users/:id",
     component: User,
+    props: true,
     children: [
       {
         // 当 /user/:id/profile 匹配成功
