@@ -3,7 +3,9 @@
 </script>
 
 <template>
+  <router-view name="Header"></router-view>
   <router-view></router-view>
+  <router-view name="Footer"></router-view>
   <!-- <div>
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />

@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+const Header = () => import("@/components/Header.vue");
+const Footer = () => import("@/components/Footer.vue");
+
 const Home = () => import("@/pages/index.vue");
 const HelloWorld = () => import("@/components/HelloWorld.vue");
 const User = () => import("@/pages/user.vue");
@@ -9,7 +12,14 @@ const UserPosts = () => import("@/components/UserPosts.vue");
 
 const routes = [
   { path: "/", component: Home },
-  { path: "/HelloWorld", component: HelloWorld },
+  {
+    path: "/HelloWorld",
+    components: {
+      default: HelloWorld,
+      Header,
+      Footer,
+    },
+  },
   {
     path: "/users/:id",
     component: User,
