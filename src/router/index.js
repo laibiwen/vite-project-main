@@ -4,11 +4,30 @@ const Home = () => import("@/pages/index.vue");
 const HelloWorld = () => import("@/components/HelloWorld.vue");
 const User = () => import("@/pages/user.vue");
 const NotFound = () => import("@/pages/NotFound.vue");
+const UserProfile = () => import("@/components/UserProfile.vue");
+const UserPosts = () => import("@/components/UserPosts.vue");
 
 const routes = [
   { path: "/", component: Home },
   { path: "/HelloWorld", component: HelloWorld },
-  { path: "/users/:id", component: User },
+  {
+    path: "/users/:id",
+    component: User,
+    children: [
+      {
+        // 当 /user/:id/profile 匹配成功
+        // UserProfile 将被渲染到 User 的 <router-view> 内部
+        path: "profile",
+        component: UserProfile,
+      },
+      {
+        // 当 /user/:id/posts 匹配成功
+        // UserPosts 将被渲染到 User 的 <router-view> 内部
+        path: "posts",
+        component: UserPosts,
+      },
+    ],
+  },
   { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
 ];
 

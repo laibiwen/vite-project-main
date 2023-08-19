@@ -1,5 +1,6 @@
 <template>
-  <div>user{{ route.params.id }}</div>
+  <h2>User {{ $route.params.id }}</h2>
+  <router-view></router-view>
 </template>
 
 <script lange="ts" setup>
