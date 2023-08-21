@@ -1,8 +1,38 @@
 <template>
-  <div class="header">这里是头部</div>
+  <div class="header">
+    <ul>
+      <router-link v-for="item in linkList" :to="item.path" class="link">{{
+        item.name
+      }}</router-link>
+    </ul>
+    <p>storeCount {{ storeCount.count }}</p>
+    <p>double storeCount {{ storeCount.double }}</p>
+  </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useCounterStore } from "@/store/count-options.ts";
+const storeCount = useCounterStore();
+
+const linkList = [
+  {
+    path: "/",
+    name: "首页",
+  },
+  {
+    path: "/HelloWorld",
+    name: "HelloWorld",
+  },
+  {
+    path: "/users/d99d9d/profile",
+    name: "profile",
+  },
+  {
+    path: "/users/d99d9d/posts",
+    name: "posts",
+  },
+];
+</script>
 
 <style lang="scss" scoped>
 .header {
@@ -12,5 +42,8 @@
   height: 100px;
   width: 100%;
   background-color: beige;
+  .link {
+    margin-right: 12px;
+  }
 }
 </style>

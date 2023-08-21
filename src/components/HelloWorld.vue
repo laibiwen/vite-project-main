@@ -1,16 +1,23 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import _ from "lodash";
+import { useCounterStore } from "@/store/count-options.ts";
 
-console.log("lodash====", _);
+console.log("useCounterStore===", useCounterStore());
+
+const storeCount = useCounterStore();
 
 const count = ref(0);
+
+const onClick = () => {
+  count.value++;
+  storeCount.increment();
+};
 </script>
 
 <template>
   <div class="hellow-world">
     <div class="card">
-      <button type="button" @click="count++">count is {{ count }}</button>
+      <button type="button" @click="onClick">count is {{ count }}</button>
       <p>
         Edit
         <code>components/HelloWorld.vue</code> to test HMR

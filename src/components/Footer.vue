@@ -1,8 +1,15 @@
 <template>
-  <div class="header">这里是底部</div>
+  <div class="header">
+    <p>这里是底部</p>
+    <p>storeCount {{ storeCount.count }}</p>
+    <p>double storeCount {{ storeCount.double }}</p>
+  </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useCounterStoreSetup } from "@/store/counter-setup.ts";
+const storeCount = useCounterStoreSetup();
+</script>
 
 <style lang="scss" scoped>
 .header {
