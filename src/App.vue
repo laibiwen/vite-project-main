@@ -4,7 +4,13 @@
 
 <template>
   <router-view name="Header"></router-view>
-  <router-view></router-view>
+  <router-view v-slot="{ Component, route }">
+    <transition name="fade">
+      <div :key="route.path">
+        <component :is="Component" />
+      </div>
+    </transition>
+  </router-view>
   <router-view name="Footer"></router-view>
   <!-- <div>
     <a href="https://vitejs.dev" target="_blank">
@@ -17,7 +23,7 @@
   <HelloWorld msg="Vite + Vue" /> -->
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -29,5 +35,22 @@
 }
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
+}
+/* 路由切换动画 */
+
+/* 进入动画 */
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
 }
 </style>
