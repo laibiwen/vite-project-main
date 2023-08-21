@@ -30,10 +30,12 @@ const routes = [
         // UserProfile 将被渲染到 User 的 <router-view> 内部
         path: "profile",
         component: UserProfile,
+        // 只有经过身份验证的用户才能创建帖子
+        meta: { requiresAuth: true },
         beforeEnter: (to, from) => {
-          console.log("beforeEnter===", to, from);
+          // console.log("beforeEnter===", to, from);
           // reject the navigation
-          return true
+          return true;
         },
       },
       {
@@ -54,7 +56,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to) => {
-  console.log("router.beforeEach===", to,router);
+  console.log("router.beforeEach===", to, router);
   if (to.name == "posts") {
     return { name: "Home" };
   }
@@ -63,6 +65,10 @@ router.beforeEach((to) => {
 
 router.afterEach((to) => {
   console.log("router.afterEach===", to);
+});
+
+router.beforeResolve(async (to) => {
+  console.log("router.beforeResolve===");
 });
 
 export default router;

@@ -13,7 +13,7 @@ const route = useRoute()
 
 console.log("route===", route);
 
-console.log("onBeforeRouteEnter===", onBeforeRouteUpdate);
+// console.log("onBeforeRouteEnter===", onBeforeRouteUpdate);
 
 onBeforeRouteUpdate(() => {
   console.log("onBeforeRouteUpdate");
