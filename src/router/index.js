@@ -11,7 +11,7 @@ const UserProfile = () => import("@/components/UserProfile.vue");
 const UserPosts = () => import("@/components/UserPosts.vue");
 
 const routes = [
-  { path: "/", component: Home },
+  { path: "/", component: Home, name: "Home" },
   {
     path: "/HelloWorld",
     components: {
@@ -30,11 +30,17 @@ const routes = [
         // UserProfile 将被渲染到 User 的 <router-view> 内部
         path: "profile",
         component: UserProfile,
+        beforeEnter: (to, from) => {
+          console.log("beforeEnter===", to, from);
+          // reject the navigation
+          return true
+        },
       },
       {
         // 当 /user/:id/posts 匹配成功
         // UserPosts 将被渲染到 User 的 <router-view> 内部
         path: "posts",
+        name: "posts",
         component: UserPosts,
       },
     ],
@@ -45,6 +51,18 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes, // `routes: routes` 的缩写
+});
+
+router.beforeEach((to) => {
+  console.log("router.beforeEach===", to,router);
+  if (to.name == "posts") {
+    return { name: "Home" };
+  }
+  return true;
+});
+
+router.afterEach((to) => {
+  console.log("router.afterEach===", to);
 });
 
 export default router;
