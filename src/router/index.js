@@ -12,14 +12,14 @@ const UserPosts = () => import("@/components/UserPosts.vue");
 
 const routes = [
   { path: "/", component: Home, name: "Home" },
-  {
-    path: "/HelloWorld",
-    components: {
-      default: HelloWorld,
-      Header,
-      Footer,
-    },
-  },
+  // {
+  //   path: "/HelloWorld",
+  //   components: {
+  //     default: HelloWorld,
+  //     Header,
+  //     Footer,
+  //   },
+  // },
   {
     path: "/users/:id",
     component: User,
@@ -78,7 +78,19 @@ router.afterEach((to) => {
 });
 
 router.beforeResolve(async (to) => {
-  console.log("router.beforeResolve===");
+  console.log("router.beforeResolve===", to);
+  if (to.path === "/HelloWorld" && !router.hasRoute("HelloWorld")) {
+    router.addRoute({
+      path: "/HelloWorld",
+      name: "HelloWorld",
+      components: {
+        default: HelloWorld,
+        Header,
+        Footer,
+      },
+    });
+    return to.fullPath;
+  }
 });
 
 export default router;
