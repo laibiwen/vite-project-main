@@ -54,6 +54,15 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes, // `routes: routes` 的缩写
+  scrollBehavior(to, from, savedPosition) {
+    // return 期望滚动到哪个的位置
+    console.log("scrollBehavior===", to, from, savedPosition);
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 };
+    }
+  },
 });
 
 router.beforeEach((to) => {
