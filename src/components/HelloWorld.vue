@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { useCounterStore } from "@/store/count-options.ts";
+import { useCounterStore } from "@/stores/count-options.ts";
 
 console.log("useCounterStore===", useCounterStore());
 
@@ -50,3 +50,4 @@ const onClick = () => {
   color: #888;
 }
 </style>
+@/stores/count-options

@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { useCounterStore } from "@/store/count-options.ts";
+import { useCounterStore } from "@/stores/count-options.ts";
 const storeCount = useCounterStore();
 
 const linkList = [
@@ -47,3 +47,4 @@ const linkList = [
   }
 }
 </style>
+@/stores/count-options

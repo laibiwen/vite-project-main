@@ -7,7 +7,7 @@
 </template>
 
 <script setup>
-import { useCounterStoreSetup } from "@/store/counter-setup.ts";
+import { useCounterStoreSetup } from "@/stores/counter-setup.ts";
 const storeCount = useCounterStoreSetup();
 </script>
 
@@ -21,3 +21,4 @@ const storeCount = useCounterStoreSetup();
   background-color: beige;
 }
 </style>
+@/stores/counter-setup
