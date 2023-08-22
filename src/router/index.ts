@@ -34,11 +34,11 @@ const routes = [
             component: UserProfile,
             // 只有经过身份验证的用户才能创建帖子
             meta: { requiresAuth: true },
-            beforeEnter: (to, from) => {
-              // console.log("beforeEnter===", to, from);
-              // reject the navigation
-              return true;
-            },
+            // beforeEnter: (to, from) => {
+            //   console.log("beforeEnter===", to, from);
+            //   // reject the navigation
+            //   return true;
+            // },
           },
           {
             // 当 /user/:id/posts 匹配成功
@@ -59,8 +59,8 @@ const router = createRouter({
   routes, // `routes: routes` 的缩写
   scrollBehavior(to, from, savedPosition) {
     // return 期望滚动到哪个的位置
-    console.log("scrollBehavior===", savedPosition);
-    return new Promise((resolve, reject) => {
+    console.log("scrollBehavior===", to, from, savedPosition);
+    return new Promise((resolve) => {
       setTimeout(() => {
         // resolve({ left: 0, top: 0 });
         if (savedPosition) {
@@ -74,7 +74,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to) => {
-  // console.log("router.beforeEach===", to, router);
+  console.log("router.beforeEach===", to);
   // if (to.name == "posts") {
   //   return { name: "Home" };
   // }

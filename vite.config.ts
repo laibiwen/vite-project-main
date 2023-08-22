@@ -1,4 +1,5 @@
 import { defineConfig } from "vite";
+import { visualizer } from "rollup-plugin-visualizer";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
 
@@ -14,10 +15,11 @@ export default defineConfig({
     // 在这里配置打包时的rollup配置
     rollupOptions: {
       output: {
-        manualChunks: {
-          vue: ["vue"],
-          vender: ["lodash"],
-        },
+        plugins: [visualizer({open:true })],
+        // manualChunks: {
+        //   vue: ["vue"],
+        //   vender: ["lodash"],
+        // },
         // manualChunks(id) {
         //   if (id.includes("node_modules")) {
         //     return "vendor";

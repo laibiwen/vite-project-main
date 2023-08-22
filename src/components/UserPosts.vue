@@ -2,6 +2,9 @@
   <div>UserPosts</div>
 </template>
 
-<script setup></script>
+<script setup>
+import _ from "lodash";
+console.log('loodash==', _);
+</script>
 
 <style lang="scss" scoped></style>

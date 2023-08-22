@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import _ from "lodash";
 import { useCounterStore } from "@/stores/count-options.ts";
 
-console.log("useCounterStore===", useCounterStore());
+console.log("useCounterStore===", _, useCounterStore());
 
 const storeCount = useCounterStore();
 
