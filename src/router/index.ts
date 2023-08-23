@@ -49,6 +49,13 @@ const routes = [
           },
         ],
       },
+      {
+        // history模式需要通配所有路由，详见vue-router文档
+        path: "/app-vue/:pathMatch(.*)*",
+        name: "vueApp",
+        meta: {},
+        component: () => import("@/qiankun/SubContainer.vue"),
+      },
       { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
     ],
   },
