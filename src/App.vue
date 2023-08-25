@@ -1,4 +1,20 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { inject } from "vue";
+import { useCounterStore } from "@/stores/count-options.ts";
+
+const useStore = useCounterStore();
+interface ACTION {
+  onGlobalStateChange: (
+    callback: (state: Record<string, any>, prev?: Record<string, any>) => void
+  ) => void;
+}
+
+const $QK_ACTIONS = inject("$QK_ACTIONS") as ACTION;
+
+$QK_ACTIONS.onGlobalStateChange((state) => {
+  useStore.changeCount(state.count);
+});
+</script>
 
 <template>
   <router-view name="Header"></router-view>
