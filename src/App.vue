@@ -17,17 +17,19 @@ $QK_ACTIONS.onGlobalStateChange((state) => {
 </script>
 
 <template>
-  <router-view name="Header"></router-view>
-  <router-view v-slot="{ Component, route }">
-    <transition name="fade" mode="out-in">
-      <!-- <keep-alive> -->
-      <div :key="route.path">
-        <component :is="Component" />
-      </div>
-      <!-- </keep-alive> -->
-    </transition>
-  </router-view>
-  <router-view name="Footer"></router-view>
+  <el-config-provider namespace="main">
+    <router-view name="Header"></router-view>
+    <router-view v-slot="{ Component, route }">
+      <transition name="fade" mode="out-in">
+        <!-- <keep-alive> -->
+        <div :key="route.path">
+          <component :is="Component" />
+        </div>
+        <!-- </keep-alive> -->
+      </transition>
+    </router-view>
+    <router-view name="Footer"></router-view>
+  </el-config-provider>
 </template>
 
 <style scoped lang="scss">

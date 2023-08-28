@@ -3,6 +3,10 @@ import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
 
+import AutoImport from "unplugin-auto-import/vite";
+import Components from "unplugin-vue-components/vite";
+import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
@@ -10,9 +14,25 @@ export default defineConfig(({ command, mode }) => {
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"),
+        "~": path.resolve(__dirname, "./src"),
       },
     },
-    plugins: [vue()],
+    plugins: [
+      vue(),
+      AutoImport({
+        resolvers: [ElementPlusResolver()],
+      }),
+      Components({
+        resolvers: [ElementPlusResolver()],
+      }),
+    ],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "~/styles/element/index.scss" as *;`,
+        },
+      },
+    },
     define: {
       __APP_ENV__: JSON.stringify(env.APP_ENV),
     },

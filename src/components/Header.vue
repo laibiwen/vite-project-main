@@ -7,6 +7,7 @@
     </ul>
     <p>storeCount {{ storeCount.count }}</p>
     <p>double storeCount {{ storeCount.double }}</p>
+    <el-button type="primary">Primary</el-button>
   </div>
 </template>
 
