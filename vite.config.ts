@@ -23,7 +23,7 @@ export default defineConfig(({ command, mode }) => {
         resolvers: [ElementPlusResolver()],
       }),
       Components({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [ElementPlusResolver({ importStyle: "sass" })],
       }),
     ],
     css: {
