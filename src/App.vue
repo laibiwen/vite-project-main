@@ -1,26 +1,35 @@
 <script setup lang="ts">
-// import HelloWorld from "./components/HelloWorld.vue";
+import { inject } from "vue";
+import { useCounterStore } from "@/stores/count-options.ts";
+
+const useStore = useCounterStore();
+interface ACTION {
+  onGlobalStateChange: (
+    callback: (state: Record<string, any>, prev?: Record<string, any>) => void
+  ) => void;
+}
+
+const $QK_ACTIONS = inject("$QK_ACTIONS") as ACTION;
+
+$QK_ACTIONS.onGlobalStateChange((state) => {
+  useStore.changeCount(state.count);
+});
 </script>
 
 <template>
-  <router-view name="Header"></router-view>
-  <router-view v-slot="{ Component, route }">
-    <transition name="fade">
-      <div :key="route.path">
-        <component :is="Component" />
-      </div>
-    </transition>
-  </router-view>
-  <router-view name="Footer"></router-view>
-  <!-- <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" /> -->
+  <el-config-provider namespace="main">
+    <router-view name="Header"></router-view>
+    <router-view v-slot="{ Component, route }">
+      <transition name="fade" mode="out-in">
+        <!-- <keep-alive> -->
+        <div :key="route.path">
+          <component :is="Component" />
+        </div>
+        <!-- </keep-alive> -->
+      </transition>
+    </router-view>
+    <router-view name="Footer"></router-view>
+  </el-config-provider>
 </template>
 
 <style scoped lang="scss">
